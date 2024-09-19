@@ -6,7 +6,7 @@ const port = 1245;
 app.get('/', (req, res) => {
   res.statusCode = 200;
   res.setHeader = ('Content-Type', 'text/plain');
-  res.send('Displays Hello Holberton School!');
+  res.send('Hello Holberton School!');
 });
 
 app.listen(port, () => {
