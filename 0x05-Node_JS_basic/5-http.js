@@ -1,10 +1,26 @@
 const { createServer } = require('http');
-
 const port = 1245;
 
+const countStudents = require('./3-read_file_async');
+const { argv } = require('process');
+const file = argv[2];
+
 const app = createServer((req, res) => {
-  res.end('Hello Holberton School!');
-});
+  if (req.url === '/') {
+    res.end('Hello Holberton School!');
+  } else if (req.url === '/students') {
+    res.write('This is the list of our students\n');
+
+    countStudents(file)
+      .then((data) => {
+	res.write(data);
+        res.end();
+      })
+      .catch((err) => {
+        res.end();
+      });
+    }
+  });
 
 app.listen(port, () => {
   console.log(`Server is Listening on port ${port}`);
