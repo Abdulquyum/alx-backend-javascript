@@ -1,7 +1,7 @@
-const http = require('http');
+const { createServer } = require('http');
 
 if (require.main === module) {
-  const app = http.createServer((req, res) => {
+  const app = createServer((req, res) => {
     res.end('Hello Holberton School!');
 });
 
