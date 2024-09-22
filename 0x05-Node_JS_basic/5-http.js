@@ -1,8 +1,11 @@
 const { createServer } = require('http');
+
 const port = 1245;
 
-const countStudents = require('./3-read_file_async');
 const { argv } = require('process');
+
+const countStudents = require('./3-read_file_async');
+
 const file = argv[2];
 
 const app = createServer((req, res) => {
@@ -13,14 +16,14 @@ const app = createServer((req, res) => {
 
     countStudents(file)
       .then((data) => {
-	res.write(data);
+        res.write(data);
         res.end();
       })
-      .catch((err) => {
+      .catch(() => {
         res.end();
       });
-    }
-  });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is Listening on port ${port}`);
