@@ -9,8 +9,8 @@ function countStudents(path) {
       }
       const lines = data.trim().split('\n');
       const students = lines.slice(1);
-
-      console.log(`Number of students: ${students.length}`);
+      let result = `Number of students: ${students.length}\n`;
+      // console.log(`Number of students: ${students.length}`);
 
       const fields = {};
 
@@ -28,10 +28,11 @@ function countStudents(path) {
       for (const field in fields) {
         if (Object.prototype.hasOwnProperty.call(fields, field)) {
           const studentList = fields[field];
-          console.log(`Number of students in ${field}: ${studentList.length}. List: ${studentList.join(', ')}`);
+	  result += `Number of students in ${field}: ${studentList.length}. List: ${studentList.join(', ')}\n`;
+          // console.log(`Number of students in ${field}: ${studentList.length}. List: ${studentList.join(', ')}`);
         }
       }
-      resolve();
+      resolve(result.trim());
     });
   });
 }
